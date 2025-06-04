@@ -74,12 +74,36 @@ Node *deleteKthElement(Node* head, int k){
     }
     return head;
 }   
+
+Node *removeEl(Node* head, int el){
+    if(head == NULL) return head;
+    if(head->data == el){
+        Node*temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+
+    Node *temp = head, *prev = NULL;
+    while(temp != NULL){
+
+        if(temp->data == el){
+            prev->next = prev->next->next;
+            break;
+        }
+        prev = temp;
+        temp = temp->next;  
+
+    }
+    return head;
+}  
 int main (){
     vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetToLL(arr);
     // head = removeHead(head);
     // head = removeTail(head);
-    head = deleteKthElement(head,3);
+    // head = deleteKthElement(head,3);
+    // head = removeEl(head, 6);
     printLL(head);
    
     cout << "\nCount of nodes in the linked list: " << endl;
