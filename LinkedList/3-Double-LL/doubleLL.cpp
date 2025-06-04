@@ -13,7 +13,7 @@ class Node {
             next = nullptr; // Initialize next to nullptr
             back = nullptr; // Initialize back to nullptr
         }
-        
+
         // Constructor to initialize data, next, and back
         Node(int value, Node* next1, Node* back1){
             data = value; // Initialize data with value
@@ -21,3 +21,26 @@ class Node {
             back = back1; // Initialize back to back1
         }
 };
+
+Node* convetArrayToDoubleLL(vector<int> &arr){
+    Node* head = new Node(arr[0]);
+    Node* prev = head;
+    for(int i = 1 ; i < arr.size() ; i++){
+        Node* newNode = new Node(arr[i], nullptr, prev);
+        prev->next = newNode;
+        prev = newNode;
+    }
+    return head;
+}
+void print(Node* head){
+    while(head != NULL){
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+int main(){
+ vector<int> arr = {21, 4, 6, 8, 10};
+    Node* head = convetArrayToDoubleLL(arr);
+    print(head);
+ return 0;
+}
