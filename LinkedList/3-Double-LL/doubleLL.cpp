@@ -111,13 +111,21 @@ void deleteNode(Node*temp){
     temp->next = NULL;
     temp->back = NULL;
 }
+//Insertion of node 1. before head 2.before tail  3. before kth 4. before node
+
+Node* insertBeforeHead(Node* head, int val){
+    Node* newNode = new Node(val, head, NULL);
+    head->back = newNode;
+    return newNode;
+}
 int main(){
  vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetArrayToDoubleLL(arr);
     // head = deleteHead(head);
     //  head = deleteTail(head);
     // head = removeKthElement(head, 3);   
-    deleteNode(head->next->next); // delete 6
+    // deleteNode(head->next->next); // delete 6
+    head = insertBeforeHead(head, 100); // insert before head   
     print(head);
  return 0;
 }
