@@ -50,10 +50,27 @@ Node * deleteHead(Node* head){
     delete prev;
     return head;
 }
+
+Node *deleteTail(Node* head){
+    if(head== NULL || head->next == NULL){
+        return NULL;
+    }
+    Node* tail = head;
+    while(tail->next != NULL){
+        tail = tail->next;
+    }
+    Node* prevTail = tail->back;
+    prevTail->next = NULL;
+    tail->back = NULL;
+    delete tail;
+    return head;
+
+}
 int main(){
  vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetArrayToDoubleLL(arr);
     // head = deleteHead(head);
+     head = deleteTail(head);
     print(head);
  return 0;
 }
