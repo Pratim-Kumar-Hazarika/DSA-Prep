@@ -117,6 +117,50 @@ Node* inesertAtLast(Node* head, int val){
     return head;
 }
 
+Node* insertAtKthPosition(Node* head, int val  , int k){
+       if( head == NULL || k == 1) {
+        Node*temp = new Node(val);
+        temp->next = head;
+        return temp;
+       }
+       int cnt = 0;
+       Node* temp = head;
+       while(temp != NULL){
+        cnt++;
+        if(cnt == (k-1)){
+            Node* newNode = new Node(val);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            break;
+        }
+        temp = temp->next;
+       }
+       return head;
+}
+
+
+Node* insertBeforeValue(Node* head, int el  , int val){
+       if( head == NULL ) {
+        return NULL;
+       }
+       if(head->data == val){
+        Node*temp = new Node(el);
+        temp->next = head;
+        return head;
+       }
+       Node*temp  = head;
+       while(temp->next != NULL){
+        if(temp->next->data == val){
+            Node* newNode = new Node(el);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            break;
+        }
+        temp = temp->next;
+       }
+       return head;
+      
+}
 int main (){
     vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetToLL(arr);
@@ -126,6 +170,8 @@ int main (){
     // head = removeEl(head, 6);
     // head = insertHead(head,69);
     // head = inesertAtLast(head,69);
+    // head = insertAtKthPosition(head,69,2);
+        head = insertBeforeValue(head,69,6);
     printLL(head);
    
     cout << "\nCount of nodes in the linked list: " << endl;
