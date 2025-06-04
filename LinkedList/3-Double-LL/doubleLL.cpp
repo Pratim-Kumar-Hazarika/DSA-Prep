@@ -118,6 +118,9 @@ Node* insertBeforeHead(Node* head, int val){
     head->back = newNode;
     return newNode;
 }
+Node *insertBeforeTail(Node* tail , int val){
+    
+}
 int main(){
  vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetArrayToDoubleLL(arr);
