@@ -118,8 +118,19 @@ Node* insertBeforeHead(Node* head, int val){
     head->back = newNode;
     return newNode;
 }
-Node *insertBeforeTail(Node* tail , int val){
-    
+Node *insertBeforeTail(Node* head , int val){
+    if(head->next ==  NULL){
+        return insertBeforeHead(head, val);
+    }
+    Node* tail = head;
+    while(tail->next != NULL){
+        tail = tail->next;
+    }
+    Node* prev = tail->back;
+    Node* newNode = new Node(val,tail,prev);
+    prev->next = newNode;
+    tail->back = newNode;
+    return head;
 }
 int main(){
  vector<int> arr = {21, 4, 6, 8, 10};
@@ -128,7 +139,8 @@ int main(){
     //  head = deleteTail(head);
     // head = removeKthElement(head, 3);   
     // deleteNode(head->next->next); // delete 6
-    head = insertBeforeHead(head, 100); // insert before head   
+    // head = insertBeforeHead(head, 100); // insert before head   
+    head = insertBeforeTail(head, 100); // insert before tail
     print(head);
  return 0;
 }
