@@ -103,6 +103,20 @@ Node* insertHead(Node* head, int val){
     temp->next = head;
     return temp;
 }
+
+
+Node* inesertAtLast(Node* head, int val){
+    if(head == NULL) {
+        return new Node(val);
+    };
+    Node *temp = head;
+    while(temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = new Node(val);
+    return head;
+}
+
 int main (){
     vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetToLL(arr);
@@ -111,6 +125,7 @@ int main (){
     // head = deleteKthElement(head,3);
     // head = removeEl(head, 6);
     // head = insertHead(head,69);
+    // head = inesertAtLast(head,69);
     printLL(head);
    
     cout << "\nCount of nodes in the linked list: " << endl;
