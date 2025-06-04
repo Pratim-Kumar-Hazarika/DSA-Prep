@@ -97,6 +97,12 @@ Node *removeEl(Node* head, int el){
     }
     return head;
 }  
+
+Node* insertHead(Node* head, int val){
+    Node *temp = new Node(val);
+    temp->next = head;
+    return temp;
+}
 int main (){
     vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetToLL(arr);
@@ -104,6 +110,7 @@ int main (){
     // head = removeTail(head);
     // head = deleteKthElement(head,3);
     // head = removeEl(head, 6);
+    // head = insertHead(head,69);
     printLL(head);
    
     cout << "\nCount of nodes in the linked list: " << endl;
