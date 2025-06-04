@@ -39,10 +39,24 @@ Node* removeHead(Node* head){
     delete temp;
     return head;
 }
+Node *removeTail(Node* head){
+    if(head == NULL || head->next == NULL) {
+        delete head;
+        return NULL;
+    }
+    Node* temp = head;
+    while(temp->next->next != NULL) {
+        temp = temp->next;
+    }
+    delete temp->next;  
+    temp->next = NULL;
+    return head;
+}
 int main (){
     vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetToLL(arr);
-    head = removeHead(head);
+    // head = removeHead(head);
+    head = removeTail(head);
     printLL(head);
    
     cout << "\nCount of nodes in the linked list: " << endl;
