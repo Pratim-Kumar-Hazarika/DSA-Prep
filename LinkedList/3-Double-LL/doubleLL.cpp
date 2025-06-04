@@ -38,9 +38,22 @@ void print(Node* head){
         head = head->next;
     }
 }
+
+Node * deleteHead(Node* head){
+    if(head == NULL || head->next == NULL){
+        return NULL;
+    }
+    Node* prev = head;
+    head = head->next;
+    head->back = NULL;
+    prev->next = NULL;
+    delete prev;
+    return head;
+}
 int main(){
  vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetArrayToDoubleLL(arr);
+    // head = deleteHead(head);
     print(head);
  return 0;
 }
