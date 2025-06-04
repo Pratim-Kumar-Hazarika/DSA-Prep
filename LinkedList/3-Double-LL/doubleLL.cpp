@@ -95,12 +95,29 @@ Node* removeKthElement(Node* head, int k){
     delete kthNode;
     return head;
 }
+
+///it will never be the head;
+void deleteNode(Node*temp){
+    Node* prev = temp->back;
+    Node* front = temp->next;
+    if(front == NULL){
+        prev->next = NULL;
+        temp->back = NULL;
+        delete temp;    
+        
+    }
+    prev->next = front;
+    front->back = prev;
+    temp->next = NULL;
+    temp->back = NULL;
+}
 int main(){
  vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetArrayToDoubleLL(arr);
     // head = deleteHead(head);
     //  head = deleteTail(head);
-    head = removeKthElement(head, 3);   
+    // head = removeKthElement(head, 3);   
+    deleteNode(head->next->next); // delete 6
     print(head);
  return 0;
 }
