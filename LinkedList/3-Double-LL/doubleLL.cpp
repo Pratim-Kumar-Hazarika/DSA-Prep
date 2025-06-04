@@ -151,6 +151,14 @@ Node *insertBeforeKthElement(Node* head, int val, int  k){
     temp -> back = newNode;
     return head;
 }
+
+
+void beforeGivenNode(Node* node , int val){
+    Node*prev = node->back;
+    Node* newNode = new Node(val,node,prev);
+    prev->next = newNode;
+    node->back = newNode;
+}
 int main(){
  vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetArrayToDoubleLL(arr);
@@ -160,7 +168,8 @@ int main(){
     // deleteNode(head->next->next); // delete 6
     // head = insertBeforeHead(head, 100); // insert before head   
     // head = insertBeforeTail(head, 100); // insert before tail
-    head = insertBeforeKthElement(head ,22,3);
+    // head = insertBeforeKthElement(head ,22,3);
+   beforeGivenNode(head->next, 22);
     print(head);
  return 0;
 }
