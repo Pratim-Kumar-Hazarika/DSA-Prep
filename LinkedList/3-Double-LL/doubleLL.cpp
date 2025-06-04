@@ -66,11 +66,41 @@ Node *deleteTail(Node* head){
     return head;
 
 }
+
+Node* removeKthElement(Node* head, int k){
+    if(head == NULL) return head;
+    int cnt = 0;
+    Node* kthNode = head;
+    while(kthNode != NULL){
+        cnt++;
+        if(cnt == k){
+            break;
+        }
+        kthNode = kthNode->next;    
+    }
+    Node* prev = kthNode->back;
+    Node* front = kthNode->next;
+    if(prev == NULL && front == NULL){
+        return NULL;
+    }else if(prev == NULL){
+       return deleteHead(head);
+    
+    }else if(front == NULL){
+        return deleteTail(head);    
+    }
+    prev->next = front;
+    front->back = prev;
+    kthNode->next = NULL;
+    kthNode-> back = NULL;
+    delete kthNode;
+    return head;
+}
 int main(){
  vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetArrayToDoubleLL(arr);
     // head = deleteHead(head);
-     head = deleteTail(head);
+    //  head = deleteTail(head);
+    head = removeKthElement(head, 3);   
     print(head);
  return 0;
 }
