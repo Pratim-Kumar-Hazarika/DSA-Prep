@@ -4,21 +4,19 @@ using namespace std;
 class Node {
     public:
         int data;
-        Node* next; // Pointer to the next node
-        Node* back; //Pointer to the previous node
-
-        // Constructor to initialize data and set next and back to nullptr
+        Node* next; 
+        Node* back;
         Node(int value){
             data = value;
-            next = nullptr; // Initialize next to nullptr
-            back = nullptr; // Initialize back to nullptr
+            next = nullptr;
+            back = nullptr; 
         }
 
-        // Constructor to initialize data, next, and back
+      
         Node(int value, Node* next1, Node* back1){
-            data = value; // Initialize data with value
-            next = next1; // Initialize next to next1
-            back = back1; // Initialize back to back1
+            data = value;
+            next = next1;
+            back = back1;
         }
 };
 
@@ -78,13 +76,38 @@ Node* bruteForce(Node* head){
     }
     return head;
 }
+
+Node* optimalApproach(Node* head){
+    //No space should be used
+    //First changing link of odd, then even , then connect even->odd
+    //odd starts at head
+    //even starts at head->next
+
+    if(head == NULL || head->next == NULL){
+        return head;
+      }  
+      Node* odd = head;
+      Node* even = head->next;
+      Node* evenHead = head->next;
+      while(even!= NULL && even->next != NULL){
+        odd->next = odd->next->next;
+        even->next = even->next->next;
+
+        odd = odd->next;
+        even = even->next;
+      }
+      odd->next = evenHead;
+      return head;
+}
 int main()
 {
     vector<int> arr = {1,2,3,4,5};
    //Output: [1,3,5,2,4]
    
      Node* head =  convetArrayToDoubleLL(arr);
-     head = bruteForce(head);
+    //  head = bruteForce(head);
+
+      head = optimalApproach(head);
      print(head);
 
   
