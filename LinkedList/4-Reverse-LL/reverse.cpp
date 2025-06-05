@@ -40,16 +40,37 @@ void print(Node* head){
 }
 
 void reverseWrtData(Node *head);
-
+ Node* reverseOptimal(Node* head);
 int main()
 {
     vector<int> arr = {21, 4, 6, 8, 10};
     Node* head = convetArrayToDoubleLL(arr);
-    
+    head = reverseOptimal(head);
+    print(head);
     //reverse LL in terms of data
     //Brute force
     //1. reverseWrtData(head);
+    //2.reverseOptimal(head);
+
     return 0;
+}
+
+
+ Node* reverseOptimal(Node* head) {
+    //TC->O(N)
+    //SC->O(1)
+        if (head == NULL || head->next == NULL) {
+            return head;
+        }
+        Node* last = NULL;
+        Node* curr = head;
+        while (curr != NULL) {
+            last = curr->back;
+            curr->back = curr->next;
+            curr->next = last;
+            curr = curr->back;
+        }
+        return last->back;
 }
 
 void reverseWrtData(Node *head)
