@@ -83,6 +83,9 @@ Node* optimalApproach(Node* head){
     //odd starts at head
     //even starts at head->next
 
+    //Tc -> N/2 X 2 = O(N) 
+    //N/2 while loop , x 2 because we are doing unit operations which boils down to O(N)
+    //SC O(1)
     if(head == NULL || head->next == NULL){
         return head;
       }  
