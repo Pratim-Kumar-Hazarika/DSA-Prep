@@ -67,7 +67,15 @@ Node* bruteForce(Node* head){
 }
 
 Node* optimal(Node*head){
-
+    Node* temp = head;
+    Node* prev = NULL;
+    while(temp != NULL){
+        Node* front = temp->next;
+        temp->next = prev;
+        prev = temp;
+        temp = front;
+    }
+    return prev;
 }
 //Reverse A Linked List
 int main()
@@ -75,7 +83,8 @@ int main()
     vector<int> arr = {1,2,3,4,5};
     // Output: [5,4,3,2,1]
     Node* head = convetArrayToDoubleLL(arr);
-    head = bruteForce(head);
+    // head = bruteForce(head);
+    head = optimal(head);
     print(head);
 
   
