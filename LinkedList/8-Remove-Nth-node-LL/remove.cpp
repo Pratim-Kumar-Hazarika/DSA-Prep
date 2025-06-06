@@ -77,6 +77,7 @@ Node* bruteForce(Node* head, int n){
 Node* optimal(Node* head, int n){
 
     //TC -> O(len)
+    //Sc -> O(1)
     if(head == NULL) return head;
     Node* fast = head;
     Node* slow = head;
