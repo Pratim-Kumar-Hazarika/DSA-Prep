@@ -67,7 +67,7 @@ Node* bruteForce(Node* head){
 }
 
 Node* optimal(Node*head){
-    //TC : O(N)
+    //TC : O  (N)
     //SC : O(1)
     Node* temp = head;
     Node* prev = NULL;
@@ -79,6 +79,15 @@ Node* optimal(Node*head){
     }
     return prev;
 }
+
+Node* optimalRecursive(Node*head){
+    if(head == NULL || head->next == NULL) return head;
+    Node* newHead = optimalRecursive(head->next);
+    Node* front = head->next;
+    front->next = head;
+    head->next = NULL;
+    return newHead;
+}
 //Reverse A Linked List
 int main()
 {
@@ -86,7 +95,8 @@ int main()
     // Output: [5,4,3,2,1]
     Node* head = convetArrayToDoubleLL(arr);
     // head = bruteForce(head);
-    head = optimal(head);
+    // head = optimal(head);
+    head = optimalRecursive(head);
     print(head);
 
   
