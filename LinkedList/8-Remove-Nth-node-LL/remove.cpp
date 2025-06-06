@@ -74,13 +74,34 @@ Node* bruteForce(Node* head, int n){
 
 }
 // Remove Nth Node from the end of the LinkedList
+Node* optimal(Node* head, int n){
+
+    //TC -> O(len)
+    if(head == NULL) return head;
+    Node* fast = head;
+    Node* slow = head;
+    for(int i = 0 ; i< n ; i++) fast = fast->next;
+
+    if(fast == NULL) return head->next;
+
+    while(fast->next != NULL){
+        fast = fast->next;
+        slow = slow->next;
+    }
+    Node* delNode = slow->next;
+    slow->next = slow->next->next;
+    delete delNode;
+    return head;
+
+}
 int main()
 {
     vector<int> arr = {1,2,3,4,5};
     int  n = 2;
     // Output: [1,2,3,5]
     Node* head = convetArrayToDoubleLL(arr);
-    head = bruteForce(head,2);
+    // head = bruteForce(head,2);
+    head = optimal(head,2);
     print(head);
 
   
