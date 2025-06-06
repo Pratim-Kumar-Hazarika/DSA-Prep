@@ -62,7 +62,12 @@ Node* bruteForce(Node* head){
     }
     //Total TC->O(2N)
     //SC->O(N) We are storing all data in stack;
+    //Optimal sol : Don't use the extra space
     return head;
+}
+
+Node* optimal(Node*head){
+
 }
 //Reverse A Linked List
 int main()
