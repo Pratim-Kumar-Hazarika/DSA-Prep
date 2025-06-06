@@ -67,6 +67,8 @@ Node* bruteForce(Node* head){
 }
 
 Node* optimal(Node*head){
+    //TC : O(N)
+    //SC : O(1)
     Node* temp = head;
     Node* prev = NULL;
     while(temp != NULL){
