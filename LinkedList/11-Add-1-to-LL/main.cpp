@@ -80,13 +80,39 @@ Node* brute(Node*head){
     //Optimise the time complexity
 
 }
+int addHelper(Node* temp ){
+    if(temp == NULL){
+        return 1;
+    }
+    int carry = addHelper(temp->next);
+    temp->data += carry;
+    if(temp->data < 10){
+        return 0;
+    }
+    temp->data = 0;
+    return 1;
+
+}
+Node* optimal(Node*head ){
+    //TC : O(N)
+    //SC : O(N) ~ Stack space
+    int carry= addHelper(head);
+    if(carry == 1){
+        Node* newNode = new Node(1);
+        newNode->next = head;
+        head = newNode;
+    }
+    return head;
+}
 
 int main()
 {
     vector<int> arr = {1,5,9};
     //Output : 159+1 = 160 
     Node* head = convetArrayToDoubleLL(arr);
-    head = brute(head);
+
+    // head = brute(head);
+    head = optimal(head);
     print(head);
   
     
