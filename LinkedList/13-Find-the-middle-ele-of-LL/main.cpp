@@ -31,6 +31,28 @@ void print(Node* head){
     }
 }
 
+Node* brute(Node*head){
+     if(head == NULL) return NULL;
+        int cnt = 0;
+        Node* temp = head;
+        while(temp != NULL){ //O(N)
+            cnt++;
+            temp = temp->next;
+        }
+        temp = head;
+        int mid = cnt/2 +1;
+        while(temp != NULL){  //O(N/2)
+            mid--;
+            if(mid == 0){
+                break;
+            }
+            temp = temp->next;
+        }
+
+        return temp;
+        //TC : O(N + N/2);
+        //SC : O(1)
+}
 int main(){
     vector<int> arr= {1,2,3,4,5};
     Node* head  = convertArrayToLL(arr);
