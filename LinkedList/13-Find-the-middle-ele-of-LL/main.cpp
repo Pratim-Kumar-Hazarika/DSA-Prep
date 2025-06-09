@@ -53,8 +53,24 @@ Node* brute(Node*head){
         //TC : O(N + N/2);
         //SC : O(1)
 }
+//Tortoise & hare algorithm
+Node* optimsied(Node * head){
+    if(head == NULL) return NULL;
+    Node* slow = head;
+    Node* fast = head;
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow; 
+    //TC : O(N/2)
+    //SC : O(1)
+}
 int main(){
-    vector<int> arr= {1,2,3,4,5};
-    Node* head  = convertArrayToLL(arr);
-    print(head);
+    vector<int> arr= {1,2,3,4,5}; //output : 3
+    vector<int> arr2= {1,2,3,4,5,6}; //output : 4
+    Node* head  = convertArrayToLL(arr2);
+    Node*ans = optimsied(head);
+    cout << ans->data << endl;
+    // print(head);
 }
