@@ -54,6 +54,29 @@ int bruteForce(Node*head){
   //  SC: O(N)
 }
 
+int findLength(Node* slow , Node*fast){
+    int cnt = 1;
+    fast = fast->next;
+    while(slow != fast){
+        cnt++;
+        fast = fast->next;
+    }
+    return cnt;
+}
+int optimised(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+    while(fast!= NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast){
+            return findLength(slow , fast);
+        }
+    }
+    return 0;
+    //TC :O(N)
+    //SC :O(1)
+}
 int main() {
   
 //  head
@@ -81,7 +104,7 @@ int main() {
     if (tail && cycleStart) {
         tail->next = cycleStart;
     }
-    int ans =  bruteForce(head) ;
+    int ans =  optimised(head) ;
     cout << ans << endl;
 
 
