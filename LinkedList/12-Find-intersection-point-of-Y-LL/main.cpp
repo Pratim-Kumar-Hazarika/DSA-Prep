@@ -80,10 +80,23 @@ Node* bestCase(Node*head1, Node* head2){
     
 }
 
-Node* optimised(Node* t1 , Node* t2){
+Node* optimised(Node* headA , Node* headB){
     //Traverse both the linkedlist
     //If anyone of them reaches before null point to opposite ( both will go to opp)
     //Traverse both and the intersection will be found
+    if(headA == NULL || headB == NULL) return NULL;
+        Node* t1 = headA;
+        Node* t2 = headB;
+        while(t1 != t2){ // For first time 
+            t1 = t1->next;
+            t2 = t2->next;
+            if(t1 == t2) return t1; // it will get terminated here
+            if(t1 == NULL) t1  = headB;
+            if(t2 == NULL) t2 = headA;
+        }
+        return t1;
+        //TC -> O(N1 + N2)
+        //SC -> O(1)
 }
 
 int main() {
