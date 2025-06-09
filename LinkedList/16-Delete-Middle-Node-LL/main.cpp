@@ -75,6 +75,8 @@ Node* optimised(Node*head){
     slow->next = slow->next->next;
     delete middle;
     return head;
+    //TC : O(N/2)
+    //SC : O(1)
 }
 int main(){
     vector<int> arr= {1,3,4,7,1,2,6}; //output : 1,2,3,4,1,2,6
