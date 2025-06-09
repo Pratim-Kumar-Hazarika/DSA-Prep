@@ -80,6 +80,12 @@ Node* bestCase(Node*head1, Node* head2){
     
 }
 
+Node* optimised(Node* t1 , Node* t2){
+    //Traverse both the linkedlist
+    //If anyone of them reaches before null point to opposite ( both will go to opp)
+    //Traverse both and the intersection will be found
+}
+
 int main() {
 
     //Create intersection
