@@ -36,8 +36,8 @@ void print(Node* head){
     }
 }
 
-vector<vector<int>> bruteForce(Node* head , int sum){
-    vector<vector<int>> res;
+vector<pair<int,int>> bruteForce(Node* head , int sum){
+    vector<pair<int,int>> res;
     Node* temp1 = head;
     while(temp1 != NULL){
         Node* temp2 = temp1->next;
@@ -54,13 +54,43 @@ vector<vector<int>> bruteForce(Node* head , int sum){
     //TC : O(N * N) ~O(N^2)
     //SC : O(1)
 }
+
+Node* findTail(Node* head){
+    Node* tail = head;
+    while(tail->next != NULL) {
+        tail = tail->next;
+    }
+    return tail;
+}
+vector<pair<int,int>> optimised(Node* head , int sum){
+    ////Take left , right pointer
+    //Right will reach at the end only on traversing
+    //left + right > sum  ? sum->back;
+    //left + right < sum ? left->next;
+    //left  + right == sum ? left->next right->back;
+    vector<pair<int,int>> ans;
+    Node* left = head;
+    Node* right = findTail(head);
+    while(left->data < right->data){
+        if(left->data + right->data ==  sum){
+            ans.push_back({left->data , right->data});
+            left = left->next;
+            right = right->back;
+        }else if(left->data + right->data < sum){
+            left = left->next;
+        }else{
+            right = right->back;
+        }
+    }
+    return ans;
+}
 int main(){
     vector<int> arr ={1,2,3,4,9};
     //Total Sum = 5
     //Pairs [1,4] [2,3]
     Node *head = convertArrayToLL(arr);
-    vector<vector<int>>ans = bruteForce(head, 5);
+    vector<pair<int,int>> ans= optimised(head, 5);
     for(auto pair : ans){
-        cout <<"[" << pair[0] <<" " << pair[1] << "]" << endl;
+        cout << pair.first << pair.second  << endl;
     }
 }
