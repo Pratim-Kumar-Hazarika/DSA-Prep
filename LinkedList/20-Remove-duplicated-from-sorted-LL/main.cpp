@@ -37,9 +37,29 @@ void print(Node* head){
 }
 
 
-
+Node* solution(Node* head){
+    Node*temp = head;
+    while(temp != NULL && temp->next != NULL){ // 
+        Node* nextNode = temp->next;
+        while(nextNode != NULL && nextNode->data == temp->data){
+            Node* duplicate = nextNode;
+            nextNode = nextNode->next;
+            free(duplicate);
+        }
+        temp->next = nextNode;
+        if(nextNode) nextNode->back = temp;
+        temp = temp->next;
+    }
+    return head;
+    //TC : O(N)
+    //SC : O(1)
+}
 int main(){
     vector<int> arr ={1,1,1,2,3,3,4};
     Node *head = convertArrayToLL(arr);
+     print(head);
+    cout << " " << endl;
+    head = solution(head);
+    print(head);
    
 }
