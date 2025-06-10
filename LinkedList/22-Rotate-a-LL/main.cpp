@@ -1,0 +1,39 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+class Node {
+    public:
+        int data;
+        Node* next;
+    Node(int value) {
+        data = value;
+        next = nullptr;
+    }
+};
+Node* convetToLL(vector<int>&arr){
+    Node* head  = new Node(arr[0]);
+    Node* current = head;
+    for(int i = 1; i< arr.size();i++){
+        Node* newNode = new Node(arr[i]);
+        current->next = newNode;
+        current = newNode;
+    }
+    return head;
+}
+Node * printLL(Node* head) {
+    Node* temp = head;
+    while(temp) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+    return head;
+}
+
+int main (){
+    vector<int> arr = {1, 2, 3, 4, 5};
+    Node* head = convetToLL(arr);
+    printLL(head);
+   
+};
