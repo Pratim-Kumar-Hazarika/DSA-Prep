@@ -16,7 +16,7 @@ public:
     }
 };
 
-  Node* copyRandomList(Node* head) {
+  Node* cloneBrute(Node* head) {
         Node* temp = head;
         unordered_map<Node*,Node*> mpp;
         while(temp != NULL){ //O(N)
@@ -69,12 +69,59 @@ Node* createListWithRandoms() {
     return nodes[0]; 
 }
 
+
+
+   Node* deepCloned(Node*head){
+    Node* temp = head;
+    Node* dummy = new Node(-1);
+    Node* res = dummy;
+    while(temp != NULL){
+        res->next = temp->next;
+        temp->next = temp->next->next;
+
+        res = res->next;
+        temp = temp->next;
+    }
+    return dummy->next;
+        
+    };
+    void connectRandomPointers(Node*head){
+        Node* temp = head;
+        while(temp != NULL){
+            Node* copyNode = temp->next;
+
+            if(temp->random){
+                copyNode->random = temp->random->next;
+            }else{
+                copyNode->random = NULL;
+            }
+            temp = temp->next->next;
+        }
+    };
+    void copyInMiddle(Node* head){
+        Node* temp = head;
+        while(temp != NULL){
+            Node* nextNode = temp->next;
+            Node* copyNode = new Node(temp->val);
+            copyNode->next = nextNode;
+            temp->next = copyNode;
+            temp = nextNode;
+        }
+    };
+ 
+    Node* cloneOptimised(Node* head) {
+        copyInMiddle(head); //O(N)
+        connectRandomPointers(head); //O(N)
+        return deepCloned(head); //O(N)
+        //TC : O(3N)
+        //SC : O(N) to create the list
+    }
 int main() {
     Node* original = createListWithRandoms();
     cout << "Original List:\n";
     printList(original);
 
-    Node* cloned = copyRandomList(original);
+    Node* cloned = cloneOptimised(original);
     cout << "\nCloned List:\n";
     printList(cloned);
 
