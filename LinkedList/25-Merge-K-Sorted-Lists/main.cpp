@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include <queue>
 using namespace std;
 
 class Node{
@@ -82,6 +83,36 @@ Node* better(vector<Node*> lists){
     // N * (K*K+1)/2 = N^3
     // O(1)
 }
+Node* optimised(vector<Node*> lists ){
+    priority_queue<pair<int,Node*>, vector<pair<int,Node*>>, greater<pair<int,Node*>>> pq;
+
+    for (Node* head : lists) { // total sike K
+        if (head) pq.push({head->data, head}); //push operation takes size of priority queue logK
+    } // K * logK
+
+    Node* dummyNode = new Node(-1);
+    Node* temp = dummyNode;
+ 
+    while (!pq.empty()) {  //K * N (assume all lists of size N)
+        auto top = pq.top(); //logk
+        pq.pop();  //logk
+
+        int val = top.first;
+        Node* node = top.second;
+
+        temp->next = node;
+        temp = temp->next;
+
+        if (node->next) {
+            pq.push({node->next->data, node->next});  //logk
+        }
+        //K* N X 3logK
+    }
+    //TC : K * logK + N*K * 3logK
+    //SC : O(K)
+    return dummyNode->next;
+}
+
 int main(){
     vector<int> list1 = {2,4,6};
     vector<int> list2 = {1,5};
@@ -93,6 +124,6 @@ int main(){
     Node* head4 = convertToLL(list4);
     vector<Node*> lists ={head1,head2,head3,head4};
 
-    Node* newNode = better(lists);
+    Node* newNode = optimised(lists);
     printLL(newNode);
 }
