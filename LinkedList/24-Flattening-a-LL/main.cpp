@@ -14,6 +14,14 @@ class Node{
         }
 };
 
+void printList(Node* head) {
+    while (head) {
+        cout << head->data << " -> ";
+        head = head->bottom;
+    }
+    cout << "NULL" << endl;
+}
+
  Node* convert( vector<int>& ans){
         if( ans.size() == 0) return NULL;
         Node* head = new Node(ans[0]);
@@ -62,15 +70,56 @@ class Node{
             if(l1) res->bottom = l1;
             else res->bottom = l2;
             return dummyNode->bottom;
-            //N * (N1 + N2)
+            //O(N1 + N2)
+            //O (M + N)
+            //O(2M)
 }
 Node *flattenOptimised(Node *root) {
         if(!root || !root->next){
             return root;
         }
         Node* mergedHead = flattenOptimised(root->next);
-        return mergeLists(root,mergedHead);
+        return mergeLists(root,mergedHead); //N X O(2M) ~ O(2NM)
+        //SC -O(1)
 }
 int main(){
+    Node* n1 = new Node(5);
+    n1->bottom = new Node(7);
+    n1->bottom->bottom = new Node(8);
+    n1->bottom->bottom->bottom = new Node(30);
 
+    Node* n2 = new Node(10);
+    n2->bottom = new Node(20);
+
+    Node* n3 = new Node(19);
+    n3->bottom = new Node(22);
+    n3->bottom->bottom = new Node(50);
+
+    Node* n4 = new Node(28);
+    n4->bottom = new Node(35);
+    n4->bottom->bottom = new Node(40);
+    n4->bottom->bottom->bottom = new Node(45);
+
+    // Connect horizontal next pointers
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = n4;
+
+
+
+      // Flatten and print results
+    cout << "Brute Force Output: ";
+    Node* resultBrute = flattenBrute(n1);
+    printList(resultBrute);
+
+    // Rebuild the original list before reusing it for optimized (because brute creates a new list)
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = n4;
+
+    cout << "Optimised Output: ";
+    Node* resultOptimised = flattenOptimised(n1);
+    printList(resultOptimised);
+
+    return 0;
 }
