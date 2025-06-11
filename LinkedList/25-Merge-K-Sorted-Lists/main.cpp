@@ -64,7 +64,7 @@ Node* merge2Lists(Node* l1 , Node*l2){
     else temp->next = l2;
     return dummy->next;
 }
-Node* optimised(vector<Node*> lists){
+Node* better(vector<Node*> lists){
     Node*head = lists[0];
     for(int i = 1; i< lists.size() ; i++){
         head = merge2Lists(head, lists[i]);
@@ -93,6 +93,6 @@ int main(){
     Node* head4 = convertToLL(list4);
     vector<Node*> lists ={head1,head2,head3,head4};
 
-    Node* newNode = optimised(lists);
+    Node* newNode = better(lists);
     printLL(newNode);
 }
