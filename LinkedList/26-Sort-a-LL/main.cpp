@@ -84,7 +84,7 @@ Node* merge(Node* l1 , Node*l2){
         right = optimisedSortList(right);
         return merge(left,right); //O (N)
         ///TC :  recursion depth : log N
-        //TC : logN x ( N + N/2)
+        //TC : logN x ( N + N/2) ~NlogN
         //SC : 1
 
     }
