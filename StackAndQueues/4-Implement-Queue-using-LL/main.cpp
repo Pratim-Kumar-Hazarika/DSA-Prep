@@ -35,6 +35,7 @@ class Queue {
     }
 
     void pop(){
+        if(start == NULL) return;
         Node* temp = start;
         start = start->next;
         delete temp;
@@ -48,6 +49,7 @@ class Queue {
         return size+1;
     }
     int top(){
+        if(start == nullptr) return -1;
         return start->data;
     }
 };
