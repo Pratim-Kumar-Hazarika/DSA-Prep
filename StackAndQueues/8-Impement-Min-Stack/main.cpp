@@ -78,6 +78,7 @@ class MinStackOptimised {
         }
 
 };
+
 int main(){
     MinStackOptimised st;
     st.push(5);
