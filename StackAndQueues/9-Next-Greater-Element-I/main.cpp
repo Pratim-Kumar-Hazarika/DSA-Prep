@@ -23,11 +23,32 @@ vector<int> nextGreaterElementBrute(vector<int>& nums1, vector<int>& nums2){
     return nge;
 
 }
+
+ vector<int> nextGreaterElementOptimises(vector<int>& nums1, vector<int>& nums2) {
+        int maxElement = *max_element(nums2.begin(), nums2.end());
+        vector<int> nge(maxElement+1, -1);
+        stack<int> st;
+        for(int i = nums2.size()-1 ; i>= 0 ; i--){
+            int num = nums2[i];
+            while(!st.empty() && st.top() <= num){
+                st.pop();
+            }
+            if(!st.empty()){
+                nge[num] = st.top();
+            }
+            st.push(num);
+        }
+        vector<int> res;
+        for(auto it: nums1 ){
+            res.push_back(nge[it]);
+        }
+        return res;
+ }
 int main(){
     vector<int> nums1 = {4,1,2};
     vector<int> nums2 = {1,3,4,2};
     //Output: [-1,3,-1]
-    vector<int> ans = nextGreaterElementBrute(nums1, nums2);
+    vector<int> ans = nextGreaterElementOptimises(nums1, nums2);
     for(auto it : ans){
         cout <<  it  << endl;
     }
