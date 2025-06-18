@@ -107,7 +107,7 @@ int main(){
     vector<int> nums = {1,2,3};
     ///Output : 4
     long long ans = subArrayRangesBrute(nums);
-    Solution s;
+    Solution s; //O (10N)
     long long ans2=  s.subArrayRanges(nums);
     cout << ans << endl;
     cout << ans2 << endl;
