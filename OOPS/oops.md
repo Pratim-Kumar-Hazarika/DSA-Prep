@@ -75,3 +75,73 @@ Teacher t2(t1); // default copy constructor -invoke
 
 Shallow Copy & deep Copy
 A shallow copy of an object copies all the memeber values from one object to another
+
+Destructor opp of constructor
+It deallcoates the memory ( dynamic memory created with new keyword)
+
+Inheritance
+ClassA -> passing properties to -> Class B
+ClassA ( Parent, Base)
+Class B ( Child , Derived)
+Base class constructor called first then child class constructor called
+
+Polymorphism
+Poly means multiple
+morph means forms
+multiple-forms
+
+1. Compile Time Polymorphism ex :
+   1. Constructor Overloading
+   2. Function Overloading
+      a. When we are defining two functions within the same class with same name but different params
+      `class Print {
+    public:
+        void show(int x){
+            cout << "int : " << x << endl;
+        }
+        void show(char ch){
+            cout <<"ch :" << ch << endl;
+        }
+};`
+2. Run time Polymorphism
+   1. Function Overriding ( Inheritance)
+      a. Parent & child both contain the same function with diff implementation. The parent class function is said to be overriden.
+
+````
+class A {
+    public:
+        void getInfo(){
+            cout << "parent class A" << endl;
+        }
+};
+
+class B : public A {
+    public:
+        void getInfo(){
+            cout << "child class B" << endl;
+        }
+};```
+````
+
+2. Virtual Functions : A virtual function is a member fn that you except to be redefiend in derived class
+
+Abstraction : Hiding all unncesaary details & showing only the imp parts
+private , protected , public. It is like a template for derived classes
+
+``class Shape {
+draw()
+}
+class Circle : public Shape {
+draw(){
+///
+}
+}
+
+Static Keyword
+
+````void fun(){
+    static int x = 0; // it will create memory once
+    cout <<"x :" << x << endl;
+    x++;
+}```
+````
