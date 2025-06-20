@@ -71,3 +71,5 @@ public:
         mpp[_key] = head->next;
     }
 };
+
+//TC : O(1)
