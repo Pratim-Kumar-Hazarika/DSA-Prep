@@ -57,6 +57,9 @@ public:
       return maxDepth(root) != -1;
 
     }
+
+    //TC -> O(N)
+    //SC -> O(N)
 };
 int main(){
     Node* root = new Node(1);
