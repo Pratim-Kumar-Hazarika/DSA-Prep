@@ -61,7 +61,20 @@ public:
            
     }
 };
-
+ Node* optimal(Node* root, Node* p, Node* q) {
+        if(root == NULL || root == p || root == q){
+            return root;
+        }
+        Node* left = optimal(root->left, p ,q);
+        Node* right = optimal(root->right,p,q);
+        if(left == NULL){
+            return right;
+        }
+        if(right == NULL){
+            return left;
+        }
+        return root;
+    }
 int main(){
     Node* root = new Node(1);
     root->left = new Node(2);
@@ -70,6 +83,7 @@ int main(){
     root->left->right = new Node(5);
     root->left->right->left = new Node(6);
     root->left->right->right = new Node(7);
-    
+    Node* x = optimal(root,root->left->left ,root->left->right->right);
+    cout << x->data << "";
     return 0;
 }
