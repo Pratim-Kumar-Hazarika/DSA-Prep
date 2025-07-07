@@ -30,8 +30,40 @@ class Brtue {
         }
 
 };
+
+class NodeValue {
+    public:
+        int maxNode, minNode, maxSize;
+        NodeValue(int _minVal, int _maxVal, int _maxSize){
+            maxNode = _maxVal;
+            minNode = _minVal;
+            maxSize = _maxSize;
+        }
+};
+class Optimised{
+    private:
+        NodeValue helper(Node* root){
+            if(!root){
+                return NodeValue(INT_MAX,INT_MIN,0);
+            }
+            auto left = helper(root->left);
+            auto right = helper(root->right);
+            if(left.maxNode < root->val && root->val < right.minNode){
+        return NodeValue(min(root->val,left.minNode),max(root->val,right.maxNode),left.maxSize+right.maxSize+1);
+            }
+
+            return NodeValue(INT_MIN, INT_MAX,max(left.maxSize,right.maxSize));
+
+        }
+    public:
+        int largestBst(Node*root){
+            return helper(root).maxSize;
+        }
+};
+
 void printResult(Node* root) {
-    Brtue sol;
+    // Brtue sol;
+    Optimised sol;
     cout << "Largest BST size in the tree: " << sol.largestBst(root) << endl;
 }
 
