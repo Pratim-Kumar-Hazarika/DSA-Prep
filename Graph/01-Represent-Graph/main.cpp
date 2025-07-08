@@ -46,3 +46,5 @@ int main(){
     }
     return 0;
 }
+//Note : We will use visited array in Graphs
+//We run a loop if a node is not visited we called a traversal algorithm
