@@ -55,4 +55,6 @@ int main() {
     cout << "Number of provinces: " << result << endl;
 
     return 0;
+    //SC : O(N) +O(N) ( recursion stack + visited array)
+    //TC : O(N) + O(N + 2E) (adjacency list creation + DFS traversal for each node)
 }
