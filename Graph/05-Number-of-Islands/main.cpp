@@ -67,4 +67,7 @@ int main() {
 
     cout << "Number of islands: " << result << endl;
     return 0;
+
+    //TC : N^2 *8 + N^2
+    //Sc : O(N^2) for visited array and queue
 }
