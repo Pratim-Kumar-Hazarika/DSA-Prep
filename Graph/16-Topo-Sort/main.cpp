@@ -99,3 +99,11 @@ int main() {
 
     return 0;
 }
+///Topo Sort Khans Algorithm ( BFS ) 
+//Indegree
+//push indegree == 0 in queue
+////pop from queue and push in ans
+//decrease indegree of neighbours
+////if indegree of neighbour becomes 0, push it in queue
+//Continue until queue is empty
+////Time Complexity: O(V + E)
