@@ -36,12 +36,13 @@ public:
 int main() {
     Solution sol;
 
+    // Example input:
     vector<int> arr = {9, 12, 18, 19};
     int start = 5;
     int end = 5;
 
     int result = sol.minimumMultiplications(arr, start, end);
-  
+    cout << "Minimum multiplications to reach from " << start << " to " << end << ": " << result << endl;
 
     return 0;
 }
