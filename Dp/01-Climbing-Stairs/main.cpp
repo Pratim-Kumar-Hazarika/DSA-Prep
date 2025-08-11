@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+    int climbStairs(int n) {
+        if (n <= 1) return 1;
+        int prev2 = 1;
+        int prev1 = 1;
+        for (int i = 2; i <= n; i++) {
+            int curi = prev2 + prev1;
+            prev2 = prev1;
+            prev1 = curi;
+        }
+        return prev1;
+    }
+};
+
+int main() {
+    Solution sol;
+    int n = 3;
+    cout << "Number of ways to climb " << n << " stairs: " 
+         << sol.climbStairs(n) << endl;
+    return 0;
+}
