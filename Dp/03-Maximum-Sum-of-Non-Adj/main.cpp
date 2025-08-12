@@ -57,6 +57,17 @@ public:
     }
 };
 
+  //House robber 2
+   int rob2(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1) return nums[0];
+        vector<int> temp1, temp2;
+        for(int i = 0 ; i < n ; i++){
+            if(i != 0) temp1.push_back(nums[i]);
+            if(i != n-1)temp2.push_back(nums[i]);
+        }
+        // return max(robOptimised(temp1), robOptimised(temp2));
+    }
 int main() {
     Solution obj;
     vector<int> houses = {2, 7, 9, 3, 1};
