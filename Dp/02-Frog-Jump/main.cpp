@@ -45,6 +45,7 @@ int minCostTabulation(vector<int>& height) {
 
 
 
+
 int minCostSpaceOptimises(vector<int>& height) {
         // Code here
         int n = height.size();
@@ -77,3 +78,4 @@ int main() {
 
     return 0;
 }
+ 
