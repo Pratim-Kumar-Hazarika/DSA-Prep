@@ -16,7 +16,7 @@ using namespace std;
         int low = 1 , high = *max_element(piles.begin(),piles.end());
 
         while(low <= high){
-            int mid = low +(high-low)/2;
+            int mid = (low+high)/2;
             long long totalH = func(piles,mid);
             if(totalH <= h){
                 high = mid-1;
